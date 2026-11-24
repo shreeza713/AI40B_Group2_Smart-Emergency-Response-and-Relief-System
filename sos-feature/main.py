@@ -6,7 +6,7 @@ from markupsafe import escape
 
 app = Flask(__name__)
 
-# In-memory store for this prototype (a database comes later in the project)
+# in memory store for this prototype - yusna
 ALERTS = {}
 
 EMERGENCY_TYPES = [
