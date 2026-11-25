@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Admin panel</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="app">
+
+  <nav class="sidebar" aria-label="Main">
+    <img class="logo" src="logo.png" alt="Logo">
+    <button class="nav-item on">
+      <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>Dashboard
+    </button>
+    <button class="nav-item">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/></svg>Report
+    </button>
+    <button class="nav-item">
+      <svg viewBox="0 0 24 24"><path d="M12 21s7-6.5 7-12a7 7 0 0 0-14 0c0 5.5 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/></svg>Map
+    </button>
+    <button class="nav-item">
+      <svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg>Incidents
+    </button>
+    <button class="nav-item">
+      <svg viewBox="0 0 24 24"><path d="M5 18h14M8 18v-5a4 4 0 0 1 8 0v5"/></svg>Alerts
+    </button>
+    <button class="nav-item">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>Admin
+    </button>
+    <button class="nav-item active">
+      <svg viewBox="0 0 24 24"><path d="M12 3l7 3v6c0 4.5-3 8-7 9-4-1-7-4.5-7-9V6z"/></svg>Security
+    </button>
+  </nav>
+
+  <div class="main">
+    <header class="topbar">
+      <div>
+        <h2>Admin panel</h2>
+        <p>System configuration</p>
+      </div>
+      <div class="topbar-right">
+        <div class="units">247 units on duty</div>
+        <div class="user">
+          <div class="avatar">MR</div>
+          <div><strong>Marco Reyes</strong><span>Field Coordinator</span></div>
+        </div>
+      </div>
+    </header>
+
+    <main class="content">
+      <h1>Admin panel</h1>
+      <p class="sub">Agency-wide configuration · Kathmandu Valley region</p>
+
+      <section class="stats">
+        <div class="stat orange"><b>312</b><span>Registered responders</span></div>
+        <div class="stat green"><b>18</b><span>Active zones</span></div>
+        <div class="stat amber"><b>7</b><span>Pending approvals</span></div>
+        <div class="stat slate"><b>99.1%</b><span>System uptime, 30d</span></div>
+      </section>
+
+      <section class="panels">
+        <div class="panel">
+          <div class="panel-head"><h3>Pending responder approvals</h3><a href="#">Review all</a></div>
+          <div class="row">
+            <div><strong>Sita Gurung</strong><small>Applied as EMT · Zone 5</small></div>
+            <span class="badge pending">Pending</span>
+          </div>
+          <div class="row">
+            <div><strong>Bikash Thapa</strong><small>Applied as Fire responder · Zone 2</small></div>
+            <span class="badge pending">Pending</span>
+          </div>
+          <div class="row">
+            <div><strong>Priya Shrestha</strong><small>Recertification · Zone 3</small></div>
+            <span class="badge pending">Pending</span>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="panel-head"><h3>Zone configuration</h3><a href="#">Manage zones</a></div>
+          <div class="row">
+            <div><strong>Zone 3 — Central Kathmandu</strong><small>42 responders · 3 stations</small></div>
+            <span class="badge healthy">Healthy</span>
+          </div>
+          <div class="row">
+            <div><strong>Zone 5 — Bhaktapur</strong><small>18 responders · 1 station</small></div>
+            <span class="badge under">Understaffed</span>
+          </div>
+          <div class="row">
+            <div><strong>Zone 2 — Lalitpur</strong><small>38 responders · 2 stations</small></div>
+            <span class="badge healthy">Healthy</span>
+          </div>
+        </div>
+      </section>
+
+      <div class="actions">
+        <button class="btn primary">Broadcast alert</button>
+        <button class="btn dark">Add responder</button>
+        <button class="btn ghost">Export activity log</button>
+      </div>
+    </main>
+  </div>
+</div>
+</body>
+</html>
