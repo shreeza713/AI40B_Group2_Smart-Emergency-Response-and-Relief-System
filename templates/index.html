@@ -1,0 +1,174 @@
+{% extends "base.html" %}
+
+{% block title %}ResponZa — Security{% endblock %}
+{% block header_title %}Security{% endblock %}
+{% block header_subtitle %}Privacy &amp; data protection{% endblock %}
+
+{% block content %}
+  <div class="section-heading">
+    <h2>Security &amp; data privacy</h2>
+    <p>Story 1.2 · Encryption, third-party consent &amp; account deletion · {{ region }}</p>
+  </div>
+
+  {% if message %}
+    <div class="notice-bar">{{ message }}</div>
+  {% endif %}
+
+  {% if error %}
+    <div class="error-bar">{{ error }}</div>
+  {% endif %}
+
+  <!-- 4 Top Stat Cards -->
+  <section class="metrics-row" aria-label="Security Overview Metrics">
+    <div class="metric-card accent-coral">
+      <div class="metric-value">{{ encrypted_channels | length }}/{{ encrypted_channels | length }}</div>
+      <div class="metric-label">Protected data channels</div>
+    </div>
+
+    <div class="metric-card accent-green">
+      <div class="metric-value">{{ enabled_consents_count }}/{{ consents | length }}</div>
+      <div class="metric-label">Active third-party consents</div>
+    </div>
+
+    <div class="metric-card accent-amber">
+      <div class="metric-value">{{ 1 if deletion_request.requested else 0 }}</div>
+      <div class="metric-label">Pending deletion requests</div>
+    </div>
+
+    <div class="metric-card accent-blue">
+      <div class="metric-value">100%</div>
+      <div class="metric-label">Consent-gated external share</div>
+    </div>
+  </section>
+
+  <!-- Two-Column Flex Split -->
+  <section class="panels-row">
+    <!-- Left Panel: Encryption & Compliance Status -->
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-title">Encryption &amp; protection status</span>
+        {% if show_policy %}
+          <a href="{{ url_for('home', policy='0') }}" class="panel-link">Hide rules</a>
+        {% else %}
+          <a href="{{ url_for('home', policy='1') }}" class="panel-link">Data rules</a>
+        {% endif %}
+      </div>
+
+      {% for item in encrypted_channels %}
+        <div class="row-item">
+          <div class="row-text">
+            <span class="row-title">{{ item.title }}</span>
+            <span class="row-sub">{{ item.detail }}</span>
+          </div>
+          <span class="pill pill-green">{{ item.badge }}</span>
+        </div>
+      {% endfor %}
+
+      {% if show_policy %}
+        <div class="policy-box">
+          <strong>Data protection compliance:</strong>
+          <ul>
+            <li>Location and message records are encrypted and scoped to authorized emergency handling.</li>
+            <li>External parties cannot access personal records without explicit user consent.</li>
+            <li>Users can submit an account and data deletion request subject to active safety and retention rules.</li>
+          </ul>
+        </div>
+      {% endif %}
+    </div>
+
+    <!-- Right Panel: Explicit Third-Party Sharing Consent -->
+    <form class="panel" method="POST" action="{{ url_for('save_consent') }}">
+      <div class="panel-header">
+        <span class="panel-title">Third-party sharing consent</span>
+        {% if enabled_consents_count == 0 %}
+          <span class="pill pill-amber">Opt-In Only</span>
+        {% else %}
+          <span class="pill pill-green">{{ enabled_consents_count }} Enabled</span>
+        {% endif %}
+      </div>
+
+      {% for c in consents %}
+        <div class="row-item">
+          <div class="row-text">
+            <span class="row-title">{{ c.title }}</span>
+            <span class="row-sub">{{ c.detail }}</span>
+          </div>
+          <label class="checkbox-group">
+            <input
+              type="checkbox"
+              name="{{ c.key }}"
+              {% if c.enabled %}checked{% endif %}
+            />
+            <span>{% if c.enabled %}Allowed{% else %}Off{% endif %}</span>
+          </label>
+        </div>
+      {% endfor %}
+
+      <div class="row-item">
+        <div class="action-bar">
+          <button type="submit" name="action" value="save" class="btn btn-coral">Save consent settings</button>
+          <button type="submit" name="action" value="revoke_all" class="btn btn-navy">Revoke all sharing</button>
+        </div>
+      </div>
+    </form>
+  </section>
+
+  <!-- Account & Data Deletion Request Section -->
+  <section class="panel">
+    <div class="panel-header">
+      <span class="panel-title">Account &amp; data deletion</span>
+      {% if deletion_request.requested %}
+        <span class="pill pill-amber">Queued</span>
+      {% else %}
+        <span class="pill pill-green">None</span>
+      {% endif %}
+    </div>
+
+    <div class="row-item">
+      <div class="row-text">
+        {% if deletion_request.requested %}
+          <span class="row-title">Deletion requested ({{ deletion_request.reason }})</span>
+          <span class="row-sub">Submitted at {{ deletion_request.updated_at }}. Account and personal records queued for removal.</span>
+        {% else %}
+          <span class="row-title">No active deletion request</span>
+          <span class="row-sub">Request permanent removal of your account profile and personal records below.</span>
+        {% endif %}
+      </div>
+    </div>
+
+    <form class="delete-form-box" method="POST" action="{{ url_for('request_deletion') }}">
+      <div class="form-row">
+        <div class="field">
+          <label for="delete_reason">Reason</label>
+          <select id="delete_reason" name="reason">
+            <option value="Privacy preferences">Privacy preferences</option>
+            <option value="No longer needed">No longer needed</option>
+            <option value="Account cleanup">Account cleanup</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="confirm_phrase">Type DELETE to confirm</label>
+          <input
+            type="text"
+            id="confirm_phrase"
+            name="confirm_phrase"
+            placeholder="DELETE"
+            autocomplete="off"
+          />
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <button type="submit" name="action" value="submit_deletion" class="btn btn-danger-outline">
+          Request account &amp; data deletion
+        </button>
+        {% if deletion_request.requested %}
+          <button type="submit" name="action" value="cancel_deletion" class="btn btn-outline">
+            Cancel request
+          </button>
+        {% endif %}
+      </div>
+    </form>
+  </section>
+{% endblock %}
