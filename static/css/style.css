@@ -1,76 +1,572 @@
 
+/* =========================================
+   RESPONZA - LOGIN & REGISTRATION
+   Figma-inspired frontend stylesheet
+========================================= */
+
+
+/* ---------- 1. GLOBAL RESET ---------- */
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+html,
 body {
-    font-family: Arial, sans-serif;
-    background: #f1f5f9;
+    width: 100%;
+    min-height: 100%;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #fafafa;
+    color: #17243a;
+}
+
+a {
+    text-decoration: none;
+}
+
+
+/* ---------- 2. MAIN PAGE LAYOUT ---------- */
+
+.login-page {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    width: 100%;
     min-height: 100vh;
 }
 
-.register-container {
-    width: 100%;
-    max-width: 420px;
-    padding: 20px;
+
+/* ---------- 3. LEFT BRAND PANEL ---------- */
+
+.brand-panel {
+    width: 43%;
+    min-height: 100vh;
+    padding: 55px 55px 65px;
+
+    background: #0b1729;
+    color: #ffffff;
+
+    display: flex;
+    flex-direction: column;
 }
 
-.register-box {
+
+/* BRAND LOGO AND NAME */
+
+.brand-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.brand-logo {
+    width: 48px;
+    height: 48px;
+    flex-shrink: 0;
+
+    object-fit: contain;
+    background: #ffffff;
+    border-radius: 50%;
+    border: 2px solid #ffffff;
+}
+
+.brand-name h2 {
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    margin-bottom: 3px;
+}
+
+.brand-name span {
+    display: block;
+    font-size: 8px;
+    letter-spacing: 0.8px;
+    color: #aab7c9;
+}
+
+/* CENTER LOGO */
+
+.logo-container {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+}
+
+.logo-container img {
+    width: 110px;
+    height: 110px;
+    object-fit: contain;
+    border-radius: 50%;
     background: white;
-    padding: 35px;
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    border: 4px solid white;
 }
 
-.register-box h1 {
-    text-align: center;
-    margin-bottom: 10px;
+
+/* BRAND HEADING AND DESCRIPTION */
+
+.brand-description {
+    margin-top: auto;
+    margin-bottom: auto;
+    max-width: 440px;
 }
 
-.register-box p {
-    text-align: center;
-    color: #666;
-    margin-bottom: 25px;
+.brand-description h1 {
+    font-size: 36px;
+    line-height: 1.15;
+    font-weight: 700;
+    letter-spacing: -0.8px;
+    margin-bottom: 17px;
 }
+
+.brand-description p {
+    max-width: 430px;
+    font-size: 12px;
+    line-height: 1.7;
+    color: #9eacc0;
+}
+
+
+/* BRAND STATISTICS */
+
+.brand-statistics {
+    display: flex;
+    align-items: flex-start;
+    gap: 35px;
+    margin-bottom: 45px;
+}
+
+.stat h2 {
+    font-size: 25px;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.stat span {
+    font-size: 8px;
+    letter-spacing: 0.5px;
+    color: #aab7c9;
+}
+
+
+/* ---------- 4. RIGHT PANEL ---------- */
+
+.login-panel {
+    width: 57%;
+    min-height: 100vh;
+
+    position: relative;
+    overflow: hidden;
+
+    background: #fbfaf9;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* ---------- 5. FADED BACKGROUND WATERMARK ---------- */
+
+.background-emblem {
+    position: absolute;
+
+    width: 620px;
+    height: 620px;
+
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    border-radius: 50%;
+    overflow: hidden;
+
+    z-index: 0;
+    pointer-events: none;
+}
+
+.background-emblem img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+
+    opacity: 0.20;
+}
+
+
+/* ---------- 6. LOGIN CARD ---------- */
+
+.login-card {
+    position: relative;
+    z-index: 1;
+
+    width: 500px;
+    max-width: calc(100% - 80px);
+
+    padding: 45px 50px;
+
+    background: rgba(250, 249, 249, 0.95);
+
+    border: 1px solid #737d8a;
+    border-radius: 38px;
+}
+
+.login-card > h2 {
+    font-size: 25px;
+    font-weight: 700;
+    color: #17243a;
+    margin-bottom: 27px;
+}
+
+
+/* ---------- 7. FORM FIELDS ---------- */
 
 .form-group {
-    margin-bottom: 18px;
+    margin-bottom: 17px;
 }
 
 .form-group label {
     display: block;
-    margin-bottom: 7px;
-    font-weight: bold;
+    font-size: 9px;
+    font-weight: 700;
+    color: #526078;
+    margin-bottom: 8px;
 }
 
 .form-group input {
     width: 100%;
-    padding: 12px;
-    border: 1px solid #ccc;
+    height: 38px;
+
+    padding: 0 12px;
+
+    border: 1px solid #dce1e8;
     border-radius: 6px;
+
+    background: #ffffff;
+
+    font-size: 12px;
+    color: #17243a;
+
+    outline: none;
+    transition: 0.2s;
 }
 
-button {
+.form-group input:focus {
+    border-color: #ed5947;
+    box-shadow: 0 0 0 2px rgba(237, 89, 71, 0.1);
+}
+
+.form-group input::placeholder {
+    color: #a1a8b3;
+}
+
+
+/* ---------- 8. LOGIN OPTIONS ---------- */
+
+.login-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+
+    margin: 8px 0 17px;
+}
+
+.remember-me {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+
+    font-size: 9px;
+    color: #526078;
+}
+
+.remember-me input {
+    width: 13px;
+    height: 13px;
+    accent-color: #ed4936;
+}
+
+.login-options a {
+    font-size: 9px;
+    color: #244d8c;
+}
+
+
+/* ---------- 9. MAIN BUTTON ---------- */
+
+.sign-in-button {
     width: 100%;
-    padding: 13px;
-    background: #2563eb;
-    color: white;
+    height: 38px;
+
     border: none;
     border-radius: 6px;
+
+    background: #ed4936;
+    color: #ffffff;
+
+    font-size: 11px;
+    font-weight: 700;
+
     cursor: pointer;
-    font-size: 16px;
+    transition: 0.2s;
 }
 
-.login-link {
-    margin-top: 20px;
+.sign-in-button:hover {
+    background: #d83d2d;
 }
 
-.login-link a {
-    color: #2563eb;
-    text-decoration: none;
+
+/* ---------- 10. REGISTER / LOGIN LINK ---------- */
+
+.register-text {
+    margin-top: 15px;
+    font-size: 10px;
+    color: #526078;
+}
+
+.register-text a {
+    color: #d9342d;
+    font-weight: 700;
+}
+
+.register-text a:hover {
+    text-decoration: underline;
+}
+
+
+/* ---------- 11. EMERGENCY MESSAGE ---------- */
+
+.emergency-message {
+    margin-top: 15px;
+    padding: 11px 13px;
+
+    background: #fff3d5;
+    border-left: 2px solid #e8b84e;
+    border-radius: 4px;
+
+    color: #805b16;
+    font-size: 9px;
+    line-height: 1.5;
+}
+
+
+/* =========================================
+   REGISTRATION PAGE STYLES
+========================================= */
+
+
+/* REGISTRATION CARD */
+
+.register-card {
+    width: 510px;
+    max-width: calc(100% - 70px);
+
+    padding: 32px 42px;
+
+    border-radius: 35px;
+}
+
+.register-card > h2 {
+    font-size: 24px;
+    margin-bottom: 7px;
+}
+
+.register-subtitle {
+    font-size: 11px;
+    color: #647084;
+    margin-bottom: 19px;
+}
+
+
+/* REGISTRATION INPUTS */
+
+.register-card .form-group {
+    margin-bottom: 12px;
+}
+
+.register-card .form-group label {
+    font-size: 8px;
+    margin-bottom: 6px;
+}
+
+.register-card .form-group input {
+    height: 34px;
+    font-size: 11px;
+}
+
+
+/* OTP INFORMATION */
+
+.otp-information {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    padding: 9px 10px;
+    margin: 8px 0 13px;
+
+    background: #f0f4fa;
+    border-radius: 5px;
+
+    color: #40516b;
+    font-size: 9px;
+    line-height: 1.5;
+}
+
+.otp-information span {
+    color: #ed5947;
+    font-weight: 700;
+    font-size: 13px;
+}
+
+
+/* TERMS AND CONDITIONS */
+
+.terms-option {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+
+    margin-bottom: 15px;
+
+    font-size: 10px;
+    color: #526078;
+}
+
+.terms-option input {
+    width: 13px;
+    height: 13px;
+    accent-color: #ed4936;
+}
+
+
+/* REGISTRATION BUTTON */
+
+.register-card .sign-in-button {
+    height: 38px;
+}
+
+
+/* REGISTRATION FOOTER */
+
+.register-card .register-text {
+    margin-top: 14px;
+}
+
+.register-card .emergency-message {
+    margin-top: 13px;
+}
+
+
+/* =========================================
+   12. RESPONSIVE DESIGN
+========================================= */
+
+@media (max-width: 1100px) {
+
+    .brand-panel {
+        padding: 40px;
+    }
+
+    .brand-description h1 {
+        font-size: 30px;
+    }
+
+    .brand-statistics {
+        gap: 25px;
+    }
+
+    .login-card {
+        padding: 38px;
+    }
+
+    .background-emblem {
+        width: 500px;
+        height: 500px;
+    }
+
+    .register-card {
+        padding: 28px 30px;
+    }
+}
+
+
+@media (max-width: 750px) {
+
+    .login-page {
+        flex-direction: column;
+    }
+
+    .brand-panel,
+    .login-panel {
+        width: 100%;
+    }
+
+    .brand-panel {
+        min-height: 380px;
+        padding: 30px;
+    }
+
+    .brand-description h1 {
+        font-size: 30px;
+    }
+
+    .brand-statistics {
+        margin-bottom: 0;
+    }
+
+    .login-panel {
+        min-height: 650px;
+        padding: 35px 15px;
+    }
+
+    .login-card,
+    .register-card {
+        width: 100%;
+        max-width: 500px;
+        padding: 32px 25px;
+    }
+
+    .background-emblem {
+        width: 420px;
+        height: 420px;
+    }
+}
+
+
+@media (max-width: 420px) {
+
+    .brand-panel {
+        padding: 25px;
+    }
+
+    .brand-description h1 {
+        font-size: 26px;
+    }
+
+    .brand-statistics {
+        gap: 25px;
+    }
+
+    .stat h2 {
+        font-size: 22px;
+    }
+
+    .login-card,
+    .register-card {
+        padding: 27px 20px;
+        border-radius: 25px;
+    }
+
+    .login-options {
+        flex-wrap: wrap;
+    }
+
 }

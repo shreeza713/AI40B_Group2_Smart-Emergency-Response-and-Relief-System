@@ -1,0 +1,132 @@
+
+{% extends "base.html" %}
+
+{% block title %}RespONZa | Login{% endblock %}
+
+{% block content %}
+
+<main class="login-page">
+
+    <!-- LEFT BRAND PANEL -->
+    <section class="brand-panel">
+
+        <div class="brand-header">
+            <img
+                src="{{ url_for('static', filename='image/responza-logo.jpg') }}"
+                alt="RespONZa Logo"
+                class="brand-logo">
+
+            <div class="brand-name">
+                <h2>RespONZa</h2>
+                <span>EMERGENCY CONSOLE</span>
+            </div>
+        </div>
+
+
+        <div class="brand-description">
+            <h1>Every second gets a<br>squad moving.</h1>
+
+            <p>
+                RespONZa connects dispatch, field responders and agencies
+                in one live view of every active incident.
+            </p>
+        </div>
+
+
+        <div class="brand-statistics">
+
+            <div class="stat">
+                <h2>3.2 min</h2>
+                <span>AVG. RESPONSE</span>
+            </div>
+
+            <div class="stat">
+                <h2>18</h2>
+                <span>REGIONS COVERED</span>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- RIGHT LOGIN PANEL -->
+    <section class="login-panel">
+
+        <!-- LARGE FADED LOGO -->
+        <div class="background-emblem">
+            <img
+                src="{{ url_for('static', filename='image/responza-logo.jpg') }}"
+                alt="">
+        </div>
+
+
+        <!-- LOGIN CARD -->
+        <div class="login-card">
+
+            <h2>Welcome</h2>
+
+            <form>
+
+                <div class="form-group">
+                    <label for="identity">EMAIL OR PHONE NUMBER</label>
+
+                    <input
+                        type="text"
+                        id="identity"
+                        name="identity"
+                        autocomplete="username"
+                        required>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="password">PASSWORD</label>
+
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        autocomplete="current-password"
+                        required>
+                </div>
+
+
+                <div class="login-options">
+
+                    <label class="remember-me">
+                        <input type="checkbox" checked>
+                        <span>Keep this device signed in</span>
+                    </label>
+
+                    <a href="/forgot-password">Forgot password</a>
+
+                </div>
+
+
+                <button type="button" class="sign-in-button">
+                    Sign In
+                </button>
+
+            </form>
+
+
+            <p class="register-text">
+                <a href="/register">
+                    Need an account? Register here!
+                </a>
+            </p>
+
+
+            <div class="emergency-message">
+                For life-threatening emergencies,
+                always call <strong>100</strong> first.
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+{% endblock %}
