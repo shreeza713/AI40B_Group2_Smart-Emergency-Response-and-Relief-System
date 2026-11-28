@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block title %}SOS sent{% endblock %}
+{% block page_title %}Report incident{% endblock %}
+{% block page_sub %}SOS alert{% endblock %}
+
+{% block content %}
+    {% if not alert %}
+        <h2 class="heading">Alert not found</h2>
+        <p class="subhead">This reference does not exist. If you need help now, call 100 (Police), 101 (Fire) or 102 (Ambulance).</p>
+        <p><a class="btn btn-primary btn-inline" href="{{ url_for('sos') }}">Back to SOS</a></p>
+    {% else %}
+        <h2 class="heading">SOS sent</h2>
+        <p class="subhead">Stay where it is safe and keep your phone with you.</p>
+
+        <div class="layout">
+            <div class="left">
+
+                {% if alert.mode == 'silent' %}
+                <div class="vibrate-box">
+                    <span class="phone" aria-hidden="true"></span>
+                    <div>
+                        <strong>Vibration confirmation</strong>
+                        <small>Two short pulses on the phone. Shown here as a shake because a web page without JavaScript cannot vibrate the phone.</small>
+                    </div>
+                </div>
+                {% endif %}
+
+                <div class="table-wrap">
+                    <table class="table details">
+                        <tr><th>Reference</th><td><span class="ref">{{ alert.ref }}</span></td></tr>
+                        <tr><th>Emergency type</th><td>{{ alert.type_label }}</td></tr>
+                        <tr><th>Sent by</th><td>{{ alert.mode|capitalize }}</td></tr>
+                        <tr><th>Location</th><td>{{ alert.place }} ({{ "%.4f"|format(alert.lat) }}, {{ "%.4f"|format(alert.lng) }})</td></tr>
+                        <tr><th>Timestamp</th><td>{{ alert.time }}</td></tr>
+                    </table>
+                </div>
+
+                {% if alert.summary %}
+                <div class="label">TEXT SUMMARY FROM YOUR VOICE COMMAND</div>
+                <div class="summary">{{ alert.summary }}</div>
+                {% endif %}
+
+                <div class="actions">
+                    <a class="btn btn-back" href="{{ url_for('sos') }}">New SOS</a>
+                    <a class="btn btn-back" href="{{ url_for('report') }}">Back to Report</a>
+                </div>
+            </div>
+
+            <div class="right">
+                {% include "_location_card.html" %}
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block title %}Send an SOS{% endblock %}
+{% block page_title %}Report incident{% endblock %}
+{% block page_sub %}SOS alert{% endblock %}
+
+{% block content %}
+    <a class="back-link" href="{{ url_for('report') }}">&larr; Back to Report</a>
+    <h2 class="heading">Send an SOS</h2>
+    <p class="subhead">Choose the emergency type, then send by tap, voice or silently.</p>
+
+    <form method="post" action="{{ url_for('sos') }}" class="layout">
+        <div class="left">
+
+            {% if error %}
+                <div class="notice notice-error" role="alert">{{ error }}</div>
+            {% endif %}
+
+            <div class="label" id="type-label">EMERGENCY TYPE</div>
+            <div class="choices choices-3" role="radiogroup" aria-labelledby="type-label">
+                {% for value, label in types %}
+                    <input type="radio" id="type-{{ value }}" name="etype" value="{{ value }}"{% if value == selected %} checked{% endif %}>
+                    <label for="type-{{ value }}">{{ label }}</label>
+                {% endfor %}
+            </div>
+
+            <div class="actions">
+                <button class="btn btn-sos" type="submit" name="mode" value="tap">SOS &mdash; send now</button>
+            </div>
+
+            <div class="label">OTHER WAYS TO SEND</div>
+            <div class="modes">
+                <div class="mode">
+                    <label class="label" for="command">VOICE COMMAND</label>
+                    <input class="input" type="text" id="command" name="command" value="{{ command }}" placeholder='e.g. "Help, fire at my house"'>
+                    <button class="btn btn-outline" type="submit" name="mode" value="voice">Send by voice command</button>
+                    <small>Needs a trigger word (help, SOS or emergency). A text summary is created.</small>
+                </div>
+                <div class="mode">
+                    <div class="label">SILENT MODE</div>
+                    <button class="btn btn-outline" type="submit" name="mode" value="silent">Send silently</button>
+                    <small>No sound or message on screen. Confirmed by a short vibration pattern.</small>
+                </div>
+            </div>
+        </div>
+
+        <div class="right">
+            {% include "_location_card.html" %}
+        </div>
+    </form>
+{% endblock %}

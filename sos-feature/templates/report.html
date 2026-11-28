@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}Report incident{% endblock %}
+{% block page_title %}Report incident{% endblock %}
+{% block page_sub %}New report{% endblock %}
+
+{% block content %}
+    <h2 class="heading">Report</h2>
+    <p class="subhead">Choose what you want to do. Each feature opens on its own page.</p>
+
+    <div class="feature-grid">
+
+        <!-- Feature 1.1: SOS by tap, voice or silent -->
+        <div class="feature-card">
+            <span class="feature-icon">SOS</span>
+            <h3>Send an SOS</h3>
+            <p>One tap, a voice command or silent mode. Your location, time and emergency type are sent with it.</p>
+            <a class="btn btn-primary" href="{{ url_for('sos') }}">Open SOS</a>
+        </div>
+
+        <!-- ADD NEW FEATURE CARDS BELOW THIS LINE.
+             Copy the card above, change the icon, title, text and the url_for(...) link,
+             and add your own route and template. -->
+
+
+    </div>
+{% endblock %}

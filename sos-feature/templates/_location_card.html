@@ -1,0 +1,14 @@
+<section class="card location-card">
+    <div class="card-head">Location pinned</div>
+    <div class="map" role="img" aria-label="Map showing the pinned location">
+        <span class="pin"></span>
+    </div>
+    <div class="card-row">
+        <strong>{{ loc.place }}</strong>
+        <small>{{ "%.4f"|format(loc.lat) }}&deg; N, {{ "%.4f"|format(loc.lng) }}&deg; E</small>
+    </div>
+    <div class="card-row">
+        <strong>Sent with every alert</strong>
+        <small>Location, timestamp and emergency type. Tap, voice and silent all send the same three.</small>
+    </div>
+</section>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}ResponZa{% endblock %} | ResponZa</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="{{ url_for('static', filename='images/responza-logo.jpg') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<aside class="sidebar">
+    <a class="logo" href="{{ url_for('report') }}" aria-label="ResponZa">
+        <img src="{{ url_for('static', filename='images/responza-logo.jpg') }}" alt="ResponZa logo">
+    </a>
+
+    <nav class="nav" aria-label="Main">
+        <a href="{{ url_for('dashboard') }}" class="nav-item{% if active == 'dashboard' %} active{% endif %}">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
+            <span>Dashboard</span>
+        </a>
+        <a href="{{ url_for('report') }}" class="nav-item{% if active == 'report' %} active{% endif %}">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/></svg>
+            <span>Report</span>
+        </a>
+        <a href="{{ url_for('map_page') }}" class="nav-item{% if active == 'map' %} active{% endif %}">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.800 12 21 12 21z"/><circle cx="12" cy="9.500" r="2.500"/></svg>
+            <span>Map</span>
+        </a>
+        <a href="{{ url_for('incidents') }}" class="nav-item{% if active == 'incidents' %} active{% endif %}">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="4.500" cy="7" r="1"/><circle cx="4.500" cy="12" r="1"/><circle cx="4.500" cy="17" r="1"/><line x1="9" y1="7" x2="21" y2="7"/><line x1="9" y1="12" x2="21" y2="12"/><line x1="9" y1="17" x2="21" y2="17"/></svg>
+            <span>Incidents</span>
+        </a>
+        <a href="{{ url_for('alerts') }}" class="nav-item{% if active == 'alerts' %} active{% endif %}">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 16v-4a5 5 0 0 1 10 0v4"/><rect x="4" y="16" width="16" height="4" rx="1"/><line x1="12" y1="3" x2="12" y2="5"/></svg>
+            <span>Alerts</span>
+        </a>
+        <a href="{{ url_for('admin') }}" class="nav-item{% if active == 'admin' %} active{% endif %}">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.400 3.600-7.500 8-7.500s8 3.100 8 7.500"/></svg>
+            <span>Admin</span>
+        </a>
+        <a href="{{ url_for('security') }}" class="nav-item{% if active == 'security' %} active{% endif %}">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7.500 2.800v6c0 4.800-3.200 7.700-7.500 9.200-4.300-1.500-7.500-4.400-7.500-9.200v-6z"/></svg>
+            <span>Security</span>
+        </a>
+    </nav>
+</aside>
+
+<div class="main">
+    <header class="topbar">
+        <div>
+            <div class="topbar-title">{% block page_title %}ResponZa{% endblock %}</div>
+            <div class="topbar-sub">{% block page_sub %}{% endblock %}</div>
+        </div>
+        <div class="topbar-right">
+            <span class="pill"><span class="pill-dot"></span>247 units on duty</span>
+            <div class="user">
+                <span class="avatar">MR</span>
+                <span class="user-text">
+                    <strong>Marco Reyes</strong>
+                    <small>Field Coordinator</small>
+                </span>
+            </div>
+        </div>
+    </header>
+
+    <main class="content">
+        {% block content %}{% endblock %}
+    </main>
+</div>
+
+</body>
+</html>
